@@ -38,7 +38,7 @@ with open('link.txt','r') as file_link:
             f = soup.find(class_="course-sections course-sections__fees tight col-xs-24")
             fees = f.text.strip().replace('Fees\n\n','') if f else ''
             # modality
-            mod = soup.find(class_="inheritFont concealLink  text-gray-600 text-decoration-none")
+            mod = soup.find(class_="key-info__content key-info__qualification py-2 pr-md-3 text-nowrap d-block d-md-inline-block")
             modality = mod.text if mod else ''
             #duration
             d = soup.find(class_="key-info__content key-info__duration py-2 pr-md-3 d-block d-md-inline-block")
@@ -76,6 +76,8 @@ tsv_path = '/Users/gianluca/Desktop/magistrale/primo anno/Primo semestre/Algorit
 # should be up to 6000
 with open('master.tsv','a', newline='', encoding='utf-8') as master:
     writer = csv.writer(master, delimiter='\t')
+    clmn = ['courseName','universityName','facultyName','isItFullTime','description','startDate','fees','modality','duration','city','country','administration','url']
+    writer.writerow(clmn)
     for i in range(45):
         course_path = tsv_path + str(i) + '.tsv'
         course = open(course_path,'r',newline='', encoding='utf-8')
@@ -87,3 +89,5 @@ with open('master.tsv','a', newline='', encoding='utf-8') as master:
         course.close()
 
 master.close()
+
+
