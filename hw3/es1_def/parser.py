@@ -2,10 +2,11 @@ import csv
 from bs4 import BeautifulSoup
 from constants import NUM_PAGES, DIR_PATH, TSV_PATH
 
+# this is a counter that allows me to index all the courses when creating the single .csv files
 index = 0
 
+# read the file containing the links
 with open('link.txt','r') as file_link:
-    # for i in range(1,NUM_PAGES+1):
     for i in range(1,NUM_PAGES+1):
         # create new folder for the i-th page
         path = DIR_PATH + '/page_' + str(i)
@@ -13,7 +14,8 @@ with open('link.txt','r') as file_link:
             #upload html file
             file_path = path + '/course_' + str(x) + '.html'
             html_content = open(file_path, 'r', encoding='utf-8')
-            soup = BeautifulSoup(html_content, 'html.parser')
+            soup = BeautifulSoup(html_content, 'html.parser') # sue BeautifulSoup to parse HTML code
+            # then, with the find(..) function I will find all the infos I need to build the dataset
             # course name
             title = soup.find(class_='text-white course-header__course-title')
             courseName = title.get('data-permutive-title') if title else '' 
@@ -73,19 +75,22 @@ file_link.close()
 # merge tsv files
 tsv_path = 'C:\\Users\\Work\\Desktop\\Data science\\ADM\\HW3 ADM\\tsv\\course_'
 
-# should be up to 6000
+# create the final .csv file
 with open('master.tsv','a', newline='', encoding='utf-8') as master:
     writer = csv.writer(master, delimiter='\t')
+    # initialize all the columns
     clmn = ['courseName','universityName','facultyName','isItFullTime','description','startDate','fees','modality','duration','city','country','administration','url']
     writer.writerow(clmn)
+    # iterate over all the courses
     for i in range(6000):
+        # open the i-th .csv file
         course_path = tsv_path + str(i) + '.tsv'
         course = open(course_path,'r',newline='', encoding='utf-8')
-        reader = csv.reader(course,delimiter='\t')
+        reader = csv.reader(course,delimiter='\t') # create the reader
         # append the row
         row = next(reader, None)
-        if row is not None:
+        if row is not None: # check
             writer.writerow(row)
-        course.close()
+        course.close() # close file when I'm done with it
 
-master.close()
+master.close() # close file
