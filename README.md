@@ -1,4 +1,4 @@
-# hw3
+# Homework 3
 ## Group 12
 In this repository there are the solutions for the Homework 3:  
 Gianluca Procopio - 1942103  
