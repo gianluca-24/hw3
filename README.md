@@ -14,5 +14,5 @@ In the folder _hw3_ you can find:
 
   In `vocabulary.txt`we have the list of all the words that you can find in the 'description' colum after the pre-processing part (stemming, punctuations remove, typing error) with a `term_id` for each one that we will use to indentify each term; in `inverted_index.txt` for each `term_id` we have a list that contains all the `doc_id` where that term is located; instead, `inverted_index_tfidf.txt` is a better version of the previous file where we added, for each `doc_id`, the _tf-idf_;
 
-  In `map.html` we have the html source code of the map we created, and we uploaded three images of it: `map_whole_view.png`, that shows the map as it is when you open the html page, `map_cluster_popup.png` that shows and example of a popup taken from a cluster and `map_popup_example.png`, that shows a single popup. 
+  In `map.html` we have the html source code of the map we created, and we uploaded three images of it: `map_whole_view.png`, that shows the map as it is when you open the html page, `map_cluster_popup.png` that shows an example of a popup taken from a cluster and `map_popup_example.png`, that shows a single popup. 
 
